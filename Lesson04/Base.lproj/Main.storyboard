@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mhk-wH-12B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Mhk-wH-12B">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -31,7 +32,48 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter countries" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Ua-gcW" userLabel="textField">
+                                <rect key="frame" x="150" y="79" width="300" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="countriesCapture:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="XX2-uB-dmn"/>
+                                </connections>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yYx-3f-ttO">
+                                <rect key="frame" x="0.0" y="129" width="600" height="450"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableCell" id="RsF-zB-bzK">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RsF-zB-bzK" id="EB9-bN-6gX">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Xoy-Ua-gcW" firstAttribute="bottom" secondItem="yYx-3f-ttO" secondAttribute="bottom" constant="-436" id="Hsq-ZQ-Y1L"/>
+                            <constraint firstItem="yYx-3f-ttO" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="IQ8-sa-fzk"/>
+                            <constraint firstItem="yYx-3f-ttO" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="0.75" id="Mcf-L2-9uC"/>
+                            <constraint firstItem="Xoy-Ua-gcW" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.5" id="Mg5-eW-lxk"/>
+                            <constraint firstItem="Xoy-Ua-gcW" firstAttribute="top" secondItem="yYx-3f-ttO" secondAttribute="top" constant="-16" id="OQC-0l-bTz"/>
+                            <constraint firstAttribute="centerX" secondItem="yYx-3f-ttO" secondAttribute="centerX" id="Zfw-lu-Qlo"/>
+                            <constraint firstAttribute="centerX" secondItem="Xoy-Ua-gcW" secondAttribute="centerX" id="iRb-cq-0VL"/>
+                            <constraint firstItem="yYx-3f-ttO" firstAttribute="top" secondItem="Xoy-Ua-gcW" secondAttribute="bottom" constant="20" id="jhv-ez-mcn"/>
+                            <constraint firstItem="Xoy-Ua-gcW" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="15" id="x8L-63-936"/>
+                            <constraint firstAttribute="centerY" secondItem="yYx-3f-ttO" secondAttribute="centerY" constant="-20" id="yE1-x5-tFJ"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yE1-x5-tFJ"/>
+                                <exclude reference="Hsq-ZQ-Y1L"/>
+                                <exclude reference="OQC-0l-bTz"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Array" id="3wV-tt-5ix">
                         <barButtonItem key="rightBarButtonItem" title="Map" id="nxC-JF-hbs">
@@ -40,6 +82,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="yYx-3f-ttO" id="VNL-am-Zeq"/>
+                        <outlet property="textInput" destination="Xoy-Ua-gcW" id="br8-q4-mcX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
