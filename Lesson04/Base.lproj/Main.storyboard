@@ -34,11 +34,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter countries" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xoy-Ua-gcW" userLabel="textField">
-                                <rect key="frame" x="150" y="79" width="300" height="30"/>
+                                <rect key="frame" x="195" y="79" width="210" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="countriesCapture:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="XX2-uB-dmn"/>
+                                    <action selector="updateArray:" destination="vXZ-lx-hvc" eventType="editingDidEnd" id="Ppv-ZX-3q3"/>
                                 </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="yYx-3f-ttO">
@@ -59,7 +59,7 @@
                             <constraint firstItem="Xoy-Ua-gcW" firstAttribute="bottom" secondItem="yYx-3f-ttO" secondAttribute="bottom" constant="-436" id="Hsq-ZQ-Y1L"/>
                             <constraint firstItem="yYx-3f-ttO" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="IQ8-sa-fzk"/>
                             <constraint firstItem="yYx-3f-ttO" firstAttribute="height" secondItem="kh9-bI-dsS" secondAttribute="height" multiplier="0.75" id="Mcf-L2-9uC"/>
-                            <constraint firstItem="Xoy-Ua-gcW" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.5" id="Mg5-eW-lxk"/>
+                            <constraint firstItem="Xoy-Ua-gcW" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" multiplier="0.35" id="Mg5-eW-lxk"/>
                             <constraint firstItem="Xoy-Ua-gcW" firstAttribute="top" secondItem="yYx-3f-ttO" secondAttribute="top" constant="-16" id="OQC-0l-bTz"/>
                             <constraint firstAttribute="centerX" secondItem="yYx-3f-ttO" secondAttribute="centerX" id="Zfw-lu-Qlo"/>
                             <constraint firstAttribute="centerX" secondItem="Xoy-Ua-gcW" secondAttribute="centerX" id="iRb-cq-0VL"/>
@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="679" y="-424"/>
         </scene>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="2b4-kn-WaL">
             <objects>
-                <viewController id="mG0-xw-3hS" sceneMemberID="viewController">
+                <viewController id="mG0-xw-3hS" customClass="MapViewController" customModule="Lesson04" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tCV-4D-Blq"/>
                         <viewControllerLayoutGuide type="bottom" id="zP7-uP-epS"/>
@@ -102,8 +102,62 @@
                     <view key="view" contentMode="scaleToFill" id="A6S-cp-d3T">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter capitol" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n9r-WT-awu">
+                                <rect key="frame" x="115" y="79" width="210" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter country" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7s-EP-ia8">
+                                <rect key="frame" x="275" y="79" width="210" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="updateDict" destination="mG0-xw-3hS" eventType="editingDidEnd" id="xIu-nF-hJm"/>
+                                </connections>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DzJ-LU-1fz" userLabel="tableView2">
+                                <rect key="frame" x="0.0" y="129" width="600" height="800"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableCell2" id="CaJ-Qi-4Tn">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CaJ-Qi-4Tn" id="uId-QK-JcU">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="DzJ-LU-1fz" secondAttribute="centerX" id="AKw-4B-iFO"/>
+                            <constraint firstAttribute="height" secondItem="DzJ-LU-1fz" secondAttribute="height" multiplier="0.75" id="Bbk-78-QuP"/>
+                            <constraint firstItem="m7s-EP-ia8" firstAttribute="width" secondItem="A6S-cp-d3T" secondAttribute="width" multiplier="0.35" id="GYt-bg-Mn0"/>
+                            <constraint firstAttribute="centerX" secondItem="m7s-EP-ia8" secondAttribute="centerX" constant="-80" id="NYJ-3m-eyx"/>
+                            <constraint firstItem="n9r-WT-awu" firstAttribute="top" secondItem="tCV-4D-Blq" secondAttribute="bottom" constant="15" id="P22-fG-QPW"/>
+                            <constraint firstItem="n9r-WT-awu" firstAttribute="width" secondItem="A6S-cp-d3T" secondAttribute="width" multiplier="0.35" id="SvM-nl-E9u"/>
+                            <constraint firstItem="zP7-uP-epS" firstAttribute="top" secondItem="DzJ-LU-1fz" secondAttribute="bottom" constant="20" id="TKz-o4-elP"/>
+                            <constraint firstItem="DzJ-LU-1fz" firstAttribute="top" secondItem="m7s-EP-ia8" secondAttribute="top" constant="38" id="UQa-Ic-fJZ"/>
+                            <constraint firstAttribute="centerX" secondItem="n9r-WT-awu" secondAttribute="centerX" constant="80" id="b5W-zD-j53"/>
+                            <constraint firstAttribute="width" secondItem="DzJ-LU-1fz" secondAttribute="width" id="cWQ-ga-BPh"/>
+                            <constraint firstItem="DzJ-LU-1fz" firstAttribute="top" secondItem="tCV-4D-Blq" secondAttribute="bottom" constant="60" id="eM2-kc-jOf"/>
+                            <constraint firstItem="m7s-EP-ia8" firstAttribute="top" secondItem="tCV-4D-Blq" secondAttribute="bottom" constant="15" id="iya-fz-kdH"/>
+                            <constraint firstItem="DzJ-LU-1fz" firstAttribute="top" secondItem="m7s-EP-ia8" secondAttribute="bottom" constant="20" id="nNh-mP-dGl"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="UQa-Ic-fJZ"/>
+                                <exclude reference="eM2-kc-jOf"/>
+                                <exclude reference="TKz-o4-elP"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="capitolText" destination="n9r-WT-awu" id="vIA-AY-klE"/>
+                        <outlet property="countryText" destination="m7s-EP-ia8" id="bqN-M2-Vtb"/>
+                        <outlet property="tableView" destination="DzJ-LU-1fz" id="7Xe-c3-Z2x"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgJ-aY-RP6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

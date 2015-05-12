@@ -9,7 +9,6 @@
 import UIKit
 
 class ArrayViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
-
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textInput: UITextField!
     var countries = [String]()
@@ -19,10 +18,10 @@ class ArrayViewController: UIViewController, UITextFieldDelegate, UITableViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         textInput.delegate = self
-        tableView.delegate = self
-        tableView.dataSource = self
         textInput.clearsOnBeginEditing = true
         countries = ["Chile"]
+        tableView.delegate = self
+        tableView.dataSource = self
         
 //        self.dismissViewControllerAnimated(false, completion: nil)
         self.dismissViewControllerAnimated(false, completion: { () -> Void in
@@ -32,10 +31,11 @@ class ArrayViewController: UIViewController, UITextFieldDelegate, UITableViewDel
     
     }
     
-    @IBAction func countriesCapture(sender: AnyObject) {
+    @IBAction func updateArray(sender: AnyObject) {
         newCountry = textInput.text
         countries.append(newCountry)
         println(countries)
+        self.tableView.reloadData()
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -47,7 +47,7 @@ class ArrayViewController: UIViewController, UITextFieldDelegate, UITableViewDel
         return true;
     }
     
-    // Mark: Table View
+    // MARK: Table View
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -58,7 +58,6 @@ class ArrayViewController: UIViewController, UITextFieldDelegate, UITableViewDel
     }
    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCellWithIdentifier(tableViewCell, forIndexPath: indexPath) as! UITableViewCell
         
         cell.textLabel!.text = countries[indexPath.row]
