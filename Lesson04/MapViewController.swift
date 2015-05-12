@@ -19,6 +19,11 @@ class MapViewController: UIViewController, UITextFieldDelegate, UITableViewDataS
             return Array(capitolCountryDict.keys)
         }
     }
+    var valueArray:[String] {
+        get {
+            return Array(capitolCountryDict.values)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,17 +68,23 @@ class MapViewController: UIViewController, UITextFieldDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let row = indexPath.row
         let cell = tableView.dequeueReusableCellWithIdentifier(tableViewCell2, forIndexPath: indexPath) as! UITableViewCell
         
-        cell.textLabel!.text = keyArray[indexPath.row]
-        
+        if let rowKey = keyArray[row] as String? {
+            cell.textLabel!.text = rowKey
+            let rowData = capitolCountryDict[rowKey]
+            cell.detailTextLabel!.text = rowData
+        } else {
+            cell.textLabel!.text = "Error"
+        }
         println(keyArray.count)
-        
         return cell
-        
     }
     
         /*
+
         TODO three: Add TWO text views and a table view to this view controller, either using code or storybaord. Accept keyboard input from the two text views. When the 'return' button is pressed on the SECOND text view, add the text view data to a dictionary. The KEY in the dictionary should be the string in the first text view, the VALUE should be the second.
         
         TODO four: Make this class a UITableViewDelegate and UITableViewDataSource that supply this table view with cells that correspond to the values in the dictionary. Each cell should print out a unique pair of key/value that the map contains. When a new key/value is inserted, the table view should display it.
