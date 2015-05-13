@@ -36,6 +36,17 @@ class MapViewController: UIViewController, UITextFieldDelegate, UITableViewDataS
         tableView.dataSource = self
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        NSNotificationCenter.defaultCenter() .addObserver(self, selector: "keyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter() .addObserver(self, selector: "keyboardDidHideNotification:", name: UIKeyboardDidHideNotification, object: nil)
+    }
+    
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         countryText.resignFirstResponder()
         return true;
@@ -48,6 +59,16 @@ class MapViewController: UIViewController, UITextFieldDelegate, UITableViewDataS
     func countryTextShouldClear(countryText: UITextField) -> Bool {
             return true;
         }
+    
+    func keyboardWillShowNotification(notification:NSNotification) {
+        capitolText.backgroundColor = UIColor.blueColor()
+        countryText.backgroundColor = UIColor.blueColor()
+    }
+    
+    func keyboardDidHideNotification(notification: NSNotification) {
+        capitolText.backgroundColor = UIColor.redColor()
+        countryText.backgroundColor = UIColor.redColor()
+    }
     
     @IBAction func updateDict() {
         let capitol = capitolText.text
@@ -82,6 +103,8 @@ class MapViewController: UIViewController, UITextFieldDelegate, UITableViewDataS
         println(keyArray.count)
         return cell
     }
+    
+    // MARK: TODO FIVE
     
         /*
 
